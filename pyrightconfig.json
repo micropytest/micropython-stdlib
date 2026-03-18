@@ -1,0 +1,6 @@
+{
+  "pythonVersion": "3.8",
+  "pythonPlatform": "All",
+  "include": ["enum/"],
+  "exclude": ["**/node_modules/", "**/__pycache__/", ".git", "*/manifest.py"]
+}

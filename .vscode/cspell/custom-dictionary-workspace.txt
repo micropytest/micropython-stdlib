@@ -1,0 +1,13 @@
+clsdict
+depbot
+github
+metacls
+micropy
+micropytest
+micropython
+mpremote
+pipx
+pyright
+siakro
+stdlib
+thursday
