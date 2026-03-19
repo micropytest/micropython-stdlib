@@ -74,7 +74,7 @@ def enum(cls: type) -> type:
   cls.__init_subclass__()
 
   # (2) replace __new__ by factory function
-  def new(cls, v: int | str) -> IntEnum:
+  def new(cls, v: int | str) -> IntEnum | StrEnum:
     if i := cls._v2i.get(v):
       return i
 
