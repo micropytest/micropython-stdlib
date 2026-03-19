@@ -16,7 +16,6 @@ extend-select = [
   "PLC",
 ]
 extend-ignore = [
-  "E401",
   "E402",
   "E722",
   "E731",
