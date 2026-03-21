@@ -1,4 +1,4 @@
-from typing import Any, Literal, final, override  # type: ignore
+from typing import final, override  # type: ignore
 from unittest import TestCase
 
 
@@ -8,12 +8,12 @@ class TestOverride(TestCase):
 
     # (1) act
     class Printer:
-      def print(self, *_: Any) -> None:
+      def print(self, *_) -> None:
         pass
 
     class PrinterX(Printer):
       @override
-      def print(self, *_: Any) -> None:
+      def print(self, *_) -> None:
         pass
 
     # (2) assessment
@@ -35,9 +35,3 @@ class TestFinal(TestCase):
     # (2) assessment
     self.assertIsInstance(A, type)
     self.assertTrue(callable(B.m))
-
-
-class TestLiteral(TestCase):
-  def test_literal(self) -> None:
-    def fn(l: Literal["x", "y"]) -> None:
-      pass

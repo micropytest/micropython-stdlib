@@ -1,7 +1,5 @@
 __all__ = [
-  "Any",
   "final",
-  "Literal",
   "override",
 ]
 
@@ -16,13 +14,3 @@ def final(fn):
   """Decorator to indicate final methods and final classes."""
 
   return fn
-
-
-Any = object
-
-
-class Literal:
-  """Special typing form to define literal types (a.k.a. value types)."""
-
-  def __getitem__(self, _):
-    return self
