@@ -24,3 +24,22 @@ red = Color(1)
 # from name
 red = Color.RED
 ```
+
+Supported:
+
+- ***`IntEnum`***
+
+- ***`StrEnum`***
+
+
+## typing
+
+Supported:
+
+- ***`Any`***
+
+- ***`Literal`***
+
+- ***`final`***
+
+- ***`override`***

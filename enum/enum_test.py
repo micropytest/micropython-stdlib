@@ -1,9 +1,5 @@
 import unittest
-from enum import (
-  IntEnum,
-  StrEnum,
-  enum,  # type: ignore
-)
+from enum import IntEnum, StrEnum, enum  # type: ignore
 
 
 # The test int enum.
