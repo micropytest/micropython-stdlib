@@ -1,4 +1,3 @@
-from inspect import isclass
 from typing import Any, Literal, final, override  # type: ignore
 from unittest import TestCase
 
