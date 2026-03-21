@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-micropython -m unittest **/*_test.py
+shopt -s globstar; micropython -m unittest **/*_test.py
