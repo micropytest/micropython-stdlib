@@ -36,10 +36,6 @@ Supported:
 
 Supported:
 
-- ***`Any`***
-
-- ***`Literal`***
-
 - ***`final`***
 
 - ***`override`***
