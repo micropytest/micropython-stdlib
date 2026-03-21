@@ -33,7 +33,7 @@ class TestFinal(TestCase):
         pass
 
     # (2) assessment
-    self.assertTrue(isclass(A))
+    self.assertIsInstance(A, type)
     self.assertTrue(callable(B.m))
 
 
