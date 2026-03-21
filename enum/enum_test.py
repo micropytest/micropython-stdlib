@@ -1,7 +1,7 @@
 import unittest
 from enum import (
   IntEnum,
-  StrEnum,  # type: ignore
+  StrEnum,
   enum,  # type: ignore
 )
 
@@ -26,16 +26,16 @@ class TestIntEnum(unittest.TestCase):
   def test_values(self) -> None:
     """Check that an IntEnum subclass is well-defined."""
 
-    assert IColor.BLUE == 3
-    assert isinstance(IColor.BLUE, int)
-    assert isinstance(IColor.BLUE, IColor)
+    self.assertEqual(IColor.BLUE, 3)
+    self.assertIsInstance(IColor.BLUE, int)
+    self.assertIsInstance(IColor.BLUE, IColor)
 
   def test_call_returns_i(self) -> None:
     """Check that Color(value) returns a Color instance if value found."""
 
-    assert IColor(1) is IColor.RED
-    assert IColor(2) is IColor.GREEN
-    assert IColor(3) is IColor.BLUE
+    self.assertIs(IColor(1), IColor.RED)
+    self.assertIs(IColor(2), IColor.GREEN)
+    self.assertIs(IColor(3), IColor.BLUE)
 
   def test_call_raises_error(self) -> None:
     """Check that Color(value) raises error if value not found."""
@@ -45,7 +45,7 @@ class TestIntEnum(unittest.TestCase):
       IColor(123)
 
     # (2) assessment
-    assert str(out.exception) == "Value '123' not found in IColor."
+    self.assertEqual(str(out.exception), "Value '123' not found in IColor.")
 
   def test_invalid_enum_value(self) -> None:
     """Check that enum definition raises error if value is not int."""
@@ -60,23 +60,23 @@ class TestIntEnum(unittest.TestCase):
         BLUE = 3
 
     # (2) assessment
-    assert str(out.exception) == "Enum literal value '2' (str) must be int."
+    self.assertEqual(str(out.exception), "Enum literal value '2' (str) must be int.")
 
 
 class TestStrEnum(unittest.TestCase):
   def test_values(self) -> None:
     """Check that a StrEnum subclass is well-defined."""
 
-    assert SColor.BLUE == "b"
-    assert isinstance(SColor.BLUE, str)
-    assert isinstance(SColor.BLUE, SColor)
+    self.assertEqual(SColor.BLUE, "b")
+    self.assertIsInstance(SColor.BLUE, str)
+    self.assertIsInstance(SColor.BLUE, SColor)
 
   def test_call_returns_i(self) -> None:
     """Check that Color(value) returns a Color instance if value found."""
 
-    assert SColor("r") is SColor.RED
-    assert SColor("g") is SColor.GREEN
-    assert SColor("b") is SColor.BLUE
+    self.assertIs(SColor("r"), SColor.RED)
+    self.assertIs(SColor("g"), SColor.GREEN)
+    self.assertIs(SColor("b"), SColor.BLUE)
 
   def test_call_raises_error(self) -> None:
     """Check that Color(value) raises error if value not found."""
@@ -86,4 +86,4 @@ class TestStrEnum(unittest.TestCase):
       SColor("rgb")
 
     # (2) assessment
-    assert str(out.exception) == "Value 'rgb' not found in SColor."
+    self.assertEqual(str(out.exception), "Value 'rgb' not found in SColor.")
