@@ -2,8 +2,9 @@
 
 shopt -s globstar; micropython -m unittest **/*_test.py
 
-if [ $? != 0 ]; then
+status=$?
+if [ $status != 0 ]; then
   echo
   echo "Some test has failed."
-  exit $?
+  exit $status
 fi

@@ -35,7 +35,7 @@ class _Enum:
 
       # pre: value must be instance of Target
       if not isinstance(value, Target):
-        raise ValueError(
+        raise TypeError(
           f"Enum literal value '{value}' ({type(value).__name__}) must be {Target.__name__}."
         )
 

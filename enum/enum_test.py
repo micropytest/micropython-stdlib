@@ -49,7 +49,7 @@ class TestIntEnum(unittest.TestCase):
     """Check that enum definition raises error if value is not int."""
 
     # (1) act
-    with self.assertRaises(ValueError) as out:
+    with self.assertRaises(TypeError) as out:
 
       @unique
       class IColor(IntEnum):
