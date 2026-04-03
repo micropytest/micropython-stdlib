@@ -39,7 +39,7 @@ class _Enum:
           f"Enum literal value '{value}' ({type(value).__name__}) must be {Target.__name__}."
         )
 
-      # pre: value must already be in use
+      # pre: value mustn't already be in use
       if (i := cls._v2i.get(value)) is not None:
         raise ValueError(f"duplicate values found in <enum '{cls.__name__}'>: {i.name} -> {name}")
 
@@ -86,12 +86,12 @@ class StrEnum(str, _Enum):
 
 
 def unique(cls: type) -> type:
-  """Sets that the enumeration can't have duplicated values.
+  """Sets that the enumeration can't have duplicate values.
 
   Observations:
   - Needed due to __init_subclass__() is not automatically called by MicroPython.
-  - This constraint will be removed when MicroPython calls it, allowing to define
-    an enumeration without this decorator.
+  - This constraint will be removed when MicroPython allows to define an enumeration
+    without this decorator.
   """
 
   # (1) adapt the literals
