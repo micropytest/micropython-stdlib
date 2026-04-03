@@ -1,5 +1,5 @@
 __all__ = [
-  "enum",
+  "unique",
   "IntEnum",
   "StrEnum",
 ]
@@ -12,13 +12,20 @@ class _Enum:
     _v2i: Value to enum instance map. Used by OurEnumType(value).
   """
 
+  _Target = None
+  """Data type for the values."""
+
+  @property
+  def name(self) -> str:
+    return self._name_  # type: ignore
+
   @classmethod
   def __init_subclass__(cls: type):
     # (1) init
     cls._v2i = {}
 
     # (2) get the target data type such as int (for IntEnum) or str (for StrEnum)
-    Target = int if issubclass(cls, IntEnum) else str
+    Target = cls._Target
 
     # (3) create the real enum instances defined by the user
     for name, value in list(cls.__dict__.items()):
@@ -28,9 +35,13 @@ class _Enum:
 
       # pre: value must be instance of Target
       if not isinstance(value, Target):
-        raise TypeError(
+        raise ValueError(
           f"Enum literal value '{value}' ({type(value).__name__}) must be {Target.__name__}."
         )
+
+      # pre: value must already be in use
+      if (i := cls._v2i.get(value)) is not None:
+        raise ValueError(f"duplicate values found in <enum '{cls.__name__}'>: {i.name} -> {name}")
 
       # create instance
       i = cls(value)
@@ -53,6 +64,12 @@ class IntEnum(int, _Enum):
   - @classmethod needed in __init_subclass__(), due to MicroPython.
   """
 
+  _Target = int
+
+  @property
+  def value(self) -> int:
+    return self
+
 
 class StrEnum(str, _Enum):
   """An enumeration where all its values must be strings.
@@ -61,13 +78,20 @@ class StrEnum(str, _Enum):
   - The IntEnum observations are applied to StrEnum.
   """
 
+  _Target = str
 
-def enum(cls: type) -> type:
-  """Generates the correct enumeration.
+  @property
+  def value(self) -> str:
+    return self
+
+
+def unique(cls: type) -> type:
+  """Sets that the enumeration can't have duplicated values.
 
   Observations:
   - Needed due to __init_subclass__() is not automatically called by MicroPython.
-  - It will be removed when MicroPython calls it.
+  - This constraint will be removed when MicroPython calls it, allowing to define
+    an enumeration without this decorator.
   """
 
   # (1) adapt the literals

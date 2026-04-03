@@ -1,9 +1,9 @@
 import unittest
-from enum import IntEnum, StrEnum, enum  # type: ignore
+from enum import IntEnum, StrEnum, unique  # type: ignore
 
 
 # The test int enum.
-@enum
+@unique
 class IColor(IntEnum):
   RED = 1
   GREEN = 2
@@ -11,7 +11,7 @@ class IColor(IntEnum):
 
 
 # The test str enum.
-@enum
+@unique
 class SColor(StrEnum):
   RED = "r"
   GREEN = "g"
@@ -22,9 +22,11 @@ class TestIntEnum(unittest.TestCase):
   def test_values(self) -> None:
     """Check that an IntEnum subclass is well-defined."""
 
-    self.assertEqual(IColor.BLUE, 3)
-    self.assertIsInstance(IColor.BLUE, int)
-    self.assertIsInstance(IColor.BLUE, IColor)
+    self.assertIsInstance(c := IColor.BLUE, IColor)
+    self.assertIsInstance(c, int)
+    self.assertEqual(c, 3)
+    self.assertEqual(c.name, "BLUE")
+    self.assertEqual(c.value, 3)
 
   def test_call_returns_i(self) -> None:
     """Check that Color(value) returns a Color instance if value found."""
@@ -43,13 +45,13 @@ class TestIntEnum(unittest.TestCase):
     # (2) assessment
     self.assertEqual(str(out.exception), "Value '123' not found in IColor.")
 
-  def test_invalid_enum_value(self) -> None:
+  def test_invalid_enum_value_due_to_type(self) -> None:
     """Check that enum definition raises error if value is not int."""
 
     # (1) act
-    with self.assertRaises(TypeError) as out:
+    with self.assertRaises(ValueError) as out:
 
-      @enum
+      @unique
       class IColor(IntEnum):
         RED = 1
         GREEN = "2"  # type: ignore
@@ -58,14 +60,31 @@ class TestIntEnum(unittest.TestCase):
     # (2) assessment
     self.assertEqual(str(out.exception), "Enum literal value '2' (str) must be int.")
 
+  def test_invalid_enum_value_due_to_duplicate(self) -> None:
+    """Check that enum definition raises error if value is a duplicate."""
+
+    # (1) act
+    with self.assertRaises(ValueError) as out:
+
+      @unique
+      class IColor(IntEnum):
+        RED = 1
+        GREEN = 2
+        BLUE = 1
+
+    # (2) assessment
+    self.assertEqual(str(out.exception), "duplicate values found in <enum 'IColor'>: RED -> BLUE")
+
 
 class TestStrEnum(unittest.TestCase):
   def test_values(self) -> None:
     """Check that a StrEnum subclass is well-defined."""
 
-    self.assertEqual(SColor.BLUE, "b")
-    self.assertIsInstance(SColor.BLUE, str)
-    self.assertIsInstance(SColor.BLUE, SColor)
+    self.assertIsInstance(c := SColor.BLUE, SColor)
+    self.assertIsInstance(c, str)
+    self.assertEqual(c, "b")
+    self.assertEqual(c.name, "BLUE")  # type: ignore
+    self.assertEqual(c.value, "b")  # type: ignore
 
   def test_call_returns_i(self) -> None:
     """Check that Color(value) returns a Color instance if value found."""

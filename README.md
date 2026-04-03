@@ -4,15 +4,22 @@ Implementations of **Python** standard libraries for **MicroPython**.
 
 ## enum
 
-Due to **MicroPython** constraints, the enumeration must be decorated with **`@enum`**.
-When **MicroPython** enhanced, this decorator will be removed.
+Supported:
+
+- ***`IntEnum`***
+
+- ***`StrEnum`***
+
+- ***`@unique`***
+
+Due to **MicroPython** constraints, the enumeration classes must be decorated with **`@unique`**.
 Example:
 
 ```python
-from enum import IntEnum, enum
+from enum import IntEnum, unique
 
 # class definition
-@enum
+@unique
 class Color(IntEnum):
   RED = 1
   BLUE = 2
@@ -24,12 +31,6 @@ red = Color(1)
 # from name
 red = Color.RED
 ```
-
-Supported:
-
-- ***`IntEnum`***
-
-- ***`StrEnum`***
 
 
 ## typing
