@@ -79,7 +79,7 @@ jobs:
       
       - name: Setup MicroPython dependencies
         run: |
-          poetry run micropython -m mip install unittest-discover
+          poetry run ./scripts/install.sh
       
       - name: Run unit tests
         run: |
