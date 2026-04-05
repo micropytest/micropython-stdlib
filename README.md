@@ -2,7 +2,15 @@
 
 Implementations of **Python** standard libraries for **MicroPython**.
 
-## enum
+
+## *collections.abc*
+
+Supported:
+
+- ***`Iterator`***
+
+
+## *enum*
 
 Supported:
 
@@ -33,7 +41,7 @@ red = Color.RED
 ```
 
 
-## typing
+## *typing*
 
 Supported:
 

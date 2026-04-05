@@ -1,0 +1,10 @@
+{
+  "version": "0.1.0",
+  "urls": [
+    [
+      "collections/abc.py",
+      "github:micropytest/micropython-stdlib/collections/abc/abc.py"
+    ]
+  ],
+  "deps": []
+}
