@@ -1,11 +1,14 @@
+CFLAGS
 clsdict
 depbot
+DMICROPY
 github
 metacls
 micropy
 micropytest
 micropython
 mpremote
+ORDEREDDICT
 pipx
 pyright
 siakro
