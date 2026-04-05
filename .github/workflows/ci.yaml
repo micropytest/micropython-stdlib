@@ -60,7 +60,7 @@ jobs:
           sudo apt-get install build-essential libffi-dev git pkg-config
 
           # clone
-          git clone --recursive --depth=1 https://github.com/micropython/micropython.git $MICROPY_SRC
+          git clone --recursive https://github.com/micropython/micropython.git $MICROPY_SRC
           cd $MICROPY_SRC
 
           # mpy-cross compilation
