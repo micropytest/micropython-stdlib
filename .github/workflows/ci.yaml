@@ -68,7 +68,8 @@ jobs:
 
           # unix port compilation
           cd ports/unix
-          make variant=standard
+          CFLAGS_EXTRA="-DMICROPY_PY_COLLECTIONS=1 -DMICROPY_PY_COLLECTIONS_ORDEREDDICT=1 -DMICROPY_PY_COLLECTIONS_DEQUE=1"
+          make variant=standard CFLAGS_EXTRA="$CFLAGS_EXTRA"
 
           # install
           ln -s $(pwd)/build-standard/micropython $MICROPY_BIN
@@ -79,8 +80,8 @@ jobs:
       
       - name: Setup MicroPython dependencies
         run: |
-          poetry run ./scripts/install.sh
+          poetry run ./scripts/install
       
       - name: Run unit tests
         run: |
-          poetry run scripts/tests.sh
+          poetry run scripts/tests
