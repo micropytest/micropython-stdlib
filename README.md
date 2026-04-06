@@ -47,4 +47,6 @@ Supported:
 
 - ***`final`***
 
+- ***`overload`***
+
 - ***`override`***

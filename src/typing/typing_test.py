@@ -1,5 +1,28 @@
-from typing import final, override  # type: ignore
+from typing import (
+  final,
+  overload,
+  override,  # type: ignore
+)
 from unittest import TestCase
+
+
+class TestOverload(TestCase):
+  def test_overload(self) -> None:
+    """Check that @overload does nothing."""
+
+    # (1) act
+    @overload
+    def sum(x: int, y: int) -> int: ...
+
+    @overload
+    def sum(x: float, y: float) -> float: ...
+
+    def sum(x, y):
+      return x + y
+
+    # (2) assessment
+    self.assertTrue(callable(sum))
+    self.assertEqual(sum(12, 34), 46)
 
 
 class TestOverride(TestCase):

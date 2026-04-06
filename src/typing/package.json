@@ -1,0 +1,9 @@
+{
+  "version": "0.3.0",
+  "urls": [
+    [
+      "typing.py",
+      "github:micropytest/micropython-stdlib/src/typing/typing.py"
+    ]
+  ]
+}
