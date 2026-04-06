@@ -1,6 +1,6 @@
 {
   "version": "0.3.0",
-  "url": [
+  "urls": [
     [
       "enum.py",
       "github:micropytest/micropython-stdlib/src/enum/enum.py"
