@@ -1,7 +1,14 @@
 __all__ = [
   "final",
+  "overload",
   "override",
 ]
+
+
+def overload(fn):
+  """Decorator to indicate that a function or method is an overload."""
+
+  return fn
 
 
 def override(fn):
