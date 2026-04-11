@@ -3,7 +3,8 @@
   "urls": [
     [
       "typing.py",
-      "github:micropytest/micropython-stdlib/src/typing/typing.py"
+      "typing.py"
     ]
-  ]
+  ],
+  "deps": []
 }
