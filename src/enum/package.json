@@ -3,7 +3,8 @@
   "urls": [
     [
       "enum.py",
-      "github:micropytest/micropython-stdlib/src/enum/enum.py"
+      "enum.py"
     ]
-  ]
+  ],
+  "deps": []
 }

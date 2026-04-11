@@ -20,6 +20,6 @@ package-mode = false
 
 [dependency-groups]
 dev = [
-  "ruff (>=0.15.9,<1.0.0)",
   "pyright (>=1.1.408,<2.0.0)",
+  "ruff (>=0.15.10,<1.0.0)",
 ]

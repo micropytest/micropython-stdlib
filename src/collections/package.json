@@ -3,11 +3,11 @@
   "urls": [
     [
       "collections/__init__.py",
-      "github:micropytest/micropython-stdlib/src/collections/collections/__init__.py"
+      "collections/__init__.py"
     ],
     [
       "collections/abc.py",
-      "github:micropytest/micropython-stdlib/src/collections/collections/abc.py"
+      "collections/abc.py"
     ]
   ],
   "deps": []
